@@ -1,0 +1,15 @@
+.current {
+  color: green;
+}
+
+.h1-title {
+  color: rgb(20, 237, 78);
+  text-decoration: none;
+}
+
+.h1-title:hover {
+  color: rgb(9, 83, 29);
+  text-decoration: none;
+}
+
+/*# sourceMappingURL=styles.css.map */

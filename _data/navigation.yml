@@ -1,0 +1,7 @@
+- name: Home
+  link: /
+  image: /assets/images/logo-16x16.png
+- name: Info
+  link: /info.html
+- name: Blog
+  link: /blog.html
