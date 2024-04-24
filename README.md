@@ -3,7 +3,7 @@ my portfolio
 
 
 ## Prerequisites
-In the current project jekyll library is utilised to create layouts for the static website.
+In the current project jekyll library is utilized to create layouts for the static website.
 ### Installation for jekyll
 [Documentation available here](https://jekyllrb.com/docs/installation/)
 1. Install Ruby by running:
@@ -32,7 +32,7 @@ Ready to start using Jekyll, refer to the documentation (link above) for detaile
     ``` bash
     jekyll build
     ```
-1. Run a local web server, by append --livereload the browser will refersh with every change
+1. Run a local web server, by append --livereload the browser will refresh with every change
     ``` bash
     jekyll serve --livereload
     ```
