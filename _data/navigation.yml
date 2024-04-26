@@ -1,7 +1,9 @@
-- name: Home
+- name: home
   link: /
   image: /assets/images/logo-16x16.png
-- name: Info
+- name: info
   link: /info.html
-- name: Blog
-  link: /blog.html
+- name: projects
+  link: /projects.html
+- name: fields
+  link: /fields.html
