@@ -1,0 +1,14 @@
+---
+layout: default
+title: fields
+---
+<h1>Fields</h1>
+
+<ul>
+    {% for field in site.fields %}
+    <li>
+        <h2>{{ field.title }}</h2>
+        <p> {{ field.content | markdownify }}</p>
+    </li>
+    {% endfor %}
+</ul>

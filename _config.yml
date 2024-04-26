@@ -2,3 +2,24 @@ title: My Awesome Site
 
 exclude:
  - README.md
+
+collections:
+  #This is the categories of each group set, like architecture, web, product design etc....
+  fields:
+    output: true
+
+defaults:
+  -scope:
+    path: ""
+    type: "projects"
+  values:
+    layout: "projects"
+  -scope:
+    path: ""
+    type: "post"
+  values:
+    layout: "post"
+  -scope:
+    path: ""
+  values:
+    layout: "default"
