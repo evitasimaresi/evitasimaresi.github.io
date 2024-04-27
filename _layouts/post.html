@@ -9,9 +9,9 @@ layout: default
 </h1>
 <p>
     {{ page.date | date_to_string }}
-    {% assign field = site.fields | where: 'name', page.field | first %}
+    {% assign field = site.fields | where: 'title', page.field | first %}
     {% if field %}
-    - <a href="{{ field.url }}">{{ field.name }}</a>
+    - <a href="{{ field.url }}">{{ field.title }}</a>
     {% endif %}
 </p>
 

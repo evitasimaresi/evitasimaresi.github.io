@@ -1,4 +1,5 @@
 ---
-name: product design
+layout: field
+title: product design
 ---
 product design projects
