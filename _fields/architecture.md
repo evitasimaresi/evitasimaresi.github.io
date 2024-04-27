@@ -1,4 +1,5 @@
 ---
-name: architecture
+layout: field
+title: architecture
 ---
 architecture projects

@@ -1,0 +1,14 @@
+---
+layout: default
+---
+
+<h1>
+    <a class="h1-title" href="/fields.html">
+        {{ page.title }}
+    </a>
+</h1>
+<p>
+    {% assign field = site.fields | where: 'title', page.field | first %}
+</p>
+
+{{ content }}
