@@ -36,3 +36,8 @@ Ready to start using Jekyll, refer to the documentation (link above) for detaile
     ``` bash
     jekyll serve --livereload
     ```
+
+    * Actually the following command refresh the content when there is change.
+        ``` bash
+        jekyll serve --force_pollingng
+        ```

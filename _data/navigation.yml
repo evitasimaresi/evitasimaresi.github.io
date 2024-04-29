@@ -1,8 +1,8 @@
-- name: home
-  link: /
-  image: /assets/images/logo-16x16.png
-- name: info
-  link: /info.html
+#- name: home
+  # link: /
+  # image: /assets/images/favicon/favicon-32x32.png
+# - name: info
+#   link: /info.html
 - name: projects
   link: /projects.html
 - name: fields
