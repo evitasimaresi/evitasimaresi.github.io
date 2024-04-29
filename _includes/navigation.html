@@ -1,70 +1,21 @@
-<nav>
-    {% for item in site.data.navigation %}
-    <a href="{{ item.link }}" {% if page.url==item.link %}class="current" {% endif %}>
-        {% if item.image %}
-        <img src={{item.image}} alt="{{item.name}}">
-        {% else %}
-        {{item.name}}
-        {% endif %}
-    </a>
-    {% endfor %}
-</nav>
-
-
-
-
-
-<nav>
-    <a href="/"><img src="/assets/images/logo-16x16.png"></a>
-    <a href="/" {% if page.url=="/" %}style="color: red;" {% endif %}>Home</a>
-    <a href="/info.html" {% if page.url=="/info.html" %}style="color: yellow;" {% endif %}>info</a>
-    <a href="/info.html">check</a>
-    <a href="/info.html">1</a>
-</nav>
-
-
-
-
-
-
-
-
-
-
-<nav class="bg-light border navbar navbar-expand-lg navbar-light">
-    <div class="container-fluid">
-        <!-- <img src="/assets/images/logo-16x16.png"> -->
-        <a class="navbar-brand" href="/"><span class="logo"><img src="/assets/images/logo-16x16.png"></span></a>
-        <button class="navbar-toggler collapsed d-flex d-lg-none flex-column justify-content-around"
-            aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" data-bs-target="#navbar"
-            data-bs-toggle="collapse" type="button">
-            <span class="toggler-icon top-bar"></span>
-            <span class="toggler-icon middle-bar"></span>
-            <span class="toggler-icon bottom-bar"></span>
-            <!-- <span class="navbar-toggler-icon"></span> -->
-        </button>
-        <div class="collapse navbar-collapse" id="navbar">
-            {% if session["name"] %}
-            <ul class="navbar-nav me-auto mt-2">
-                {% if session["user_type"] == "Patient" %}
-                <li class="nav-item"><a class="nav-link" href="/chat">chat</a></li>
-                <li class="nav-item"><a class="nav-link" href="/appointments">appointments</a></li>
-                <li class="nav-item"><a class="nav-link" href="/history">history</a></li>
-                {% else %}
-                <!-- <li class="nav-item"><a class="nav-link" href="">Organizer</a></li> -->
-                {% endif %}
-            </ul>
-            <ul class="navbar-nav ms-auto mt-2">
-                <li class="nav-item"><a class="nav-link" href="">{{session["user_type"]}}: {{session["name"]}}</a>
-                </li>
-                <!-- <li class="nav-item"><a class="nav-link" href="">Settings</a></li> -->
-                <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
-            </ul>
+<div class ="collapsible-menu">
+    <a href="/"><img class="logo" src="/assets/images/evs_logo_horizontal-06.svg" alt="logo of website"></a>
+    <input type="checkbox" id="menu">
+    <label for="menu">
+        <span class="toggler-icon vertical-bar"></span>
+        <span class="toggler-icon horizontal-bar"></span>
+    </label>
+    <nav class="menu-content">
+        {% for item in site.data.navigation %}
+        <a href="{{ item.link }}" {% if page.url==item.link %}class="current" {% endif %}>
+            {% if item.image %}
+            <img src={{item.image}} alt="{{item.name}}">
             {% else %}
-            <ul class="navbar-nav ms-auto mt-2">
-                <li class="nav-item"><a class="nav-link" href="/authuser">authenticate user</a></li>
-            </ul>
+            {{item.name}}
             {% endif %}
-        </div>
-    </div>
-</nav>
+        </a>
+        {% endfor %}
+    </nav>
+</div>
+<a href="/info.html" id="info-element" {% if page.url=="/info.html" %}class="current" {% endif %}>info</a>
+ 

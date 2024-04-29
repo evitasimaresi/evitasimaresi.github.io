@@ -25,12 +25,16 @@
 
   <link rel="stylesheet" href="/assets/css/styles.css">
 
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>{{ page.title }}</title>
 </head>
 
 <body>
   {% include navigation.html %}
-  {{ content }}
+  <div class="body-content">
+    {{ content }}
+  </div>
 </body>
 
 </html>

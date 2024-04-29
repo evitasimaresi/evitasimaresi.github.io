@@ -1,0 +1,105 @@
+:root {
+    --top-margin: 10px;
+    --menu-margin: 15px;
+}
+
+nav {
+    position: fixed;
+}
+
+.current {
+    color: var(--hight-light-color);
+}
+
+.collapsible-menu label {
+    display: block;
+    cursor: pointer;
+  }
+  
+  input#menu {
+    display: none;
+    max-height: var(--menu-margin);
+
+  }
+  
+  .menu-content {
+    max-height: 0;
+    overflow-y: hidden;
+    background: var(--background-color);
+  }
+  
+  input:checked~.menu-content {
+    max-height: 200px;
+    transition: max-height 3s linear;
+  }
+
+  input:not(:checked)~.menu-content {
+    max-height: 0;
+    transition: max-height 2s linear;
+  }
+  
+  .collapsible-menu {
+    position: fixed;
+    top: var(--top-margin); 
+    left: var(--top-margin); 
+    width: var(--menu-margin);
+    // border-bottom: 3px solid #2c10dc;
+  }
+
+  label {
+    margin-top: var(--menu-margin);
+    height: var(--menu-margin);
+  }
+  
+  .collapsible-menu ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .collapsible-menu a {
+    display: block;
+  }
+
+  #info-element {
+    position: fixed;
+    top: var(--top-margin);
+    right: var(--top-margin);
+  }
+  
+  a,
+  a:hover {
+    color: var(--black);
+    text-decoration: none;
+    font-size: 20px;
+  }
+
+
+.toggler-icon {
+    display: block;
+    position: absolute;
+    height: 1.5px;
+    width: 100%;
+    background-color: var(--black);
+    border-radius: 0;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+}
+
+.vertical-bar {
+    transform: rotate(90deg);
+    transition: transform 0.3s ease-in-out;
+}
+
+input:checked ~ label .vertical-bar {
+    transform: rotate(180deg);
+}
+
+input:not(:checked) ~ label .vertical-bar {
+    transform: rotate(90deg);
+}
+
+.logo {
+    height: 20px;
+}
