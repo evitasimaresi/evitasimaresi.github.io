@@ -8,7 +8,7 @@ nav {
 }
 
 .current {
-    color: var(--hight-light-color);
+    color: var(--hight-light-color) !important;
 }
 
 .collapsible-menu label {
@@ -66,11 +66,11 @@ nav {
     right: var(--top-margin);
   }
   
-  a,
-  a:hover {
+  .collapsible-menu a,
+  .collapsible-menu a:hover {
     color: var(--black);
     text-decoration: none;
-    font-size: 20px;
+    font-size: 25px;
   }
 
 

@@ -1,0 +1,16 @@
+---
+layout: default
+
+---
+
+<p style="color:beige; font-size: 50px;">This is the grid html</p>
+
+<div class="grid">
+    {% for i in (1..200) %}
+    <div>{{ i }}</div>
+    {% endfor %}
+</div>
+
+<script src="/assets/js/grid.js"></script>
+
+{{ content }}

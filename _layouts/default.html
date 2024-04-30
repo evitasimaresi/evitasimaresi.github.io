@@ -31,10 +31,14 @@
 </head>
 
 <body>
-  {% include navigation.html %}
-  <div class="body-content">
+  <header>
+    {% include navigation.html %}
+  </header>
+  <main class="body-content">
     {{ content }}
-  </div>
+  </main>
+
+  <script src="/assets/js/script.js"></script>
 </body>
 
 </html>
