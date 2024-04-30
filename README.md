@@ -39,5 +39,5 @@ Ready to start using Jekyll, refer to the documentation (link above) for detaile
 
     * Actually the following command refresh the content when there is change.
         ``` bash
-        jekyll serve --force_pollingng
+        jekyll serve --force_polling
         ```
