@@ -4,10 +4,10 @@
 
 .grid {
     display: grid;
-    background: var(--hight-light-color);
+    // background: var(--hight-light-color);
     // max-width: 900px;
     // margin: 0 auto;
-    grid-auto-rows: calc(80vw / 21* 18); 
+    grid-auto-rows: calc(70vw / 21 * 18); 
     // grid-template-columns: repeat(55, 1fr);
     grid-template-columns: repeat(var(--Column-number), 1fr);
 }
@@ -22,16 +22,18 @@
 /*screens smaller than 900px*/
 @media (max-width: 900px) {
     .grid {
-        grid-template-columns: repeat(calc(var(--Column-number) / 4), 1fr);
+        grid-template-columns: repeat(calc(var(--Column-number) / 3), 1fr);
     }
 }
 
 .grid > div {
-    // background: var(--color);
-    border: 1px dashed rgba(253, 0, 211, 0.158);
+    border: 1px dashed rgba(250, 191, 240, 0.856);
 }
 
 // .grid > div:nth-child(1) {
 //     grid-column: span 2;
 // }
 
+.image-in-grid {
+    width: 100%;
+}
