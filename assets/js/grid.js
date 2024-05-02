@@ -1,12 +1,37 @@
 ---
 ---
+var searchIndex = [
+    {% for post in site.posts %}
+      {
+        title: "{{ post.title | escape }}",
+        field: "{{ post.field | escape }}",
+        coverPhoto: "{{ post.coverPhoto | escape }}",
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
+
+
+console.log(searchIndex[0].coverPhoto);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function getRandomPostsArray(postCount) {
     let numbers = Array.from({ length: postCount }, (_, i) => i + 1);
     for (let i = 0; i < postCount; i++) {
         const j = Math.floor(Math.random() * (i + 1));
         [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
     }
-    // console.log("numbers: " + numbers);
 }
 
 function getRandomNumber(min, max) {
@@ -18,14 +43,11 @@ function defineImageSize(imgSurce) {
         let img = new Image();
         img.onload = function () {
             let dimensions = { width: this.width, height: this.height };
-            // console.log("imageDimensions: ", dimensions);
             let cellSize;
             if (dimensions.height > dimensions.width) {
-                // console.log("vertical")
                 // Vertical image
                 cellSize = getRandomNumber(2, 4);
             } else {
-                // console.log("horizontal")
                 // Horizontal image
                 cellSize = getRandomNumber(4, 8);
             }
@@ -52,20 +74,19 @@ function placeImg(imgPosition, cellSize, imageSrc) {
 
 function appendGridCells(grid, numberOfCells) {
     // Generate an array of the specified length
-    const cellsArray = Array.from({ length: numberOfCells }, (_, i) => i + 1);
-    cellsArray.forEach(cell => {
+    for (let i = 0; i < numberOfCells; i++) {
         const gridCell = document.createElement('div');
-
         grid.appendChild(gridCell);
-    });
+    }
 }
 
 function setPosts() {
     // This is count the order of the images in the grid
     let imgIndexInGrid = 1;
 
-    let imgPosition = 0;
-    console.log("0: imgPosition: " + imgPosition);
+    let newImgPosition = 0;
+    let oldImgPosition = 0;
+    let cellsToAppend = 0;
     let postCount = {{ site.posts.size }};
 
     let orderOfPosts = getRandomPostsArray(postCount);
@@ -77,21 +98,20 @@ function setPosts() {
     // -2-  Get their position
     // -3-  Place them in the grid
     for (let i = 1; i <= postCount; i++) {
-        // console.log("postCount: " + postCount);
         defineImageSize(imageSrc)
             .then(cellSize => {
-                // console.log("Cell size: ", cellSize);
 
-                imgPosition = getRandomNumber(imgPosition + 1, imgPosition + 8);
-                console.log(i + ": imgPosition: " + imgPosition);
-                if (imgPosition <= 8) {
-                    appendGridCells(grid, imgPosition + cellSize);
-                } else {
-                    appendGridCells(grid, cellSize + 1);
-                };
+                newImgPosition = getRandomNumber(newImgPosition + 1, newImgPosition + 8);
                 
-                placeImg(imgPosition, cellSize, imageSrc);
-                imgPosition++;
+                if (newImgPosition < 8) {
+                    appendGridCells(grid, newImgPosition);
+                } else {
+                    cellsToAppend = newImgPosition - oldImgPosition;
+                    appendGridCells(grid, cellsToAppend);
+                };
+                placeImg(newImgPosition, cellSize, imageSrc);
+                oldImgPosition = newImgPosition;
+                newImgPosition ++;
             })
             .catch(error => {
                 console.error(error);
