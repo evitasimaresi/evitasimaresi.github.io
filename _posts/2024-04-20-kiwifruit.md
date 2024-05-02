@@ -1,6 +1,7 @@
 ---
 layout: post
 field: architecture
+coverPhoto: /assets/images/project-test/WeedingInGasStation_Greece_2012.webp
 ---
 
 Kiwifruit (often abbreviated as kiwi), or Chinese gooseberry is the
