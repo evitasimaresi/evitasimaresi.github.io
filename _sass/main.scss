@@ -2,27 +2,28 @@
     border: 1px solid rgb(57, 213, 228);
  } */
 
- :root {
-    --black: #000000;
-    --hight-light-color: rgba(255, 255, 255, 0.7);
-    --color: rgb(0, 255, 170);
-    --border-width: 1px;
-    --background-color:  #FF5733;
- }
+:root {
+   --black: #000000;
+   --hight-light-color: rgba(255, 255, 255, 0.7);
+   --color: rgb(0, 255, 170);
+   --border-width: 1px;
+   --background-color: #FF5733;
+}
 
- ::selection {
-    color: var(--black);
-    background: var(--color);
- }
- 
+::selection {
+   color: var(--black);
+   background: var(--hight-light-color);
+}
+
 body {
-    background-color: var(--background-color);
-    margin: 10px;
+   background-color: var(--background-color);
+   margin: 10px;
 }
 
- .body-content {
-    padding: 60px 0 0 0;
+.body-content {
+   padding: 60px 0 0 0;
 }
+
 
 // img {
 //     max-width: 100%;
