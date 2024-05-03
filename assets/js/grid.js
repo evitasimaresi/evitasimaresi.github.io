@@ -1,8 +1,9 @@
 ---
 ---
-var searchIndex = [
+let postsList = [
     {% for post in site.posts %}
       {
+        url: "{{ post.url }}",
         title: "{{ post.title | escape }}",
         field: "{{ post.field | escape }}",
         coverPhoto: "{{ post.coverPhoto | escape }}",
@@ -10,21 +11,15 @@ var searchIndex = [
     {% endfor %}
   ];
 
+//   console.log(postsList);
 
-console.log(searchIndex[0].coverPhoto);
-
-
-
-
-
-
-
-
-
-
-
-
-
+function getRandomPosts(postsList) {
+    for (let i = 0; i < postsList.length; i++) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [postsList[i], postsList[j]] = [postsList[j], postsList[i]];
+    }
+    return postsList;
+}
 
 function getRandomPostsArray(postCount) {
     let numbers = Array.from({ length: postCount }, (_, i) => i + 1);
@@ -60,16 +55,18 @@ function defineImageSize(imgSurce) {
     });
 }
 
-function placeImg(imgPosition, cellSize, imageSrc) {
-
+function placeImg(imgPosition, cellSize, image) {
+    // console.log(image);
     let gridCell = document.querySelector(`.grid > div:nth-child(${imgPosition})`);
     if (gridCell) {
         gridCell.style.gridColumn = 'span ' + cellSize;
     }
-    gridCell.innerHTML += `<article>
-                            <img class="image-in-grid" src="${imageSrc}" alt="this is an image test">
-                            <p>image</p>
-                            </article>`;
+    gridCell.innerHTML += `<a class="grid-a" href="${image.url}">
+                            <article>
+                            <img class="image-in-grid" src="${image.coverPhoto}" alt="this is an image test">
+                            <p class="grid-p" >${image.title}</p>
+                            </article>
+                            </a>`;
 }
 
 function appendGridCells(grid, numberOfCells) {
@@ -89,17 +86,19 @@ function setPosts() {
     let cellsToAppend = 0;
     let postCount = {{ site.posts.size }};
 
-    let orderOfPosts = getRandomPostsArray(postCount);
-    let imageSrc = '/assets/images/project-test/WeedingInGasStation_Greece_2012.webp';
+    let orderOfPosts = getRandomPosts(postsList);
+    let image = '';
     const grid = document.querySelector('.grid');
-
+    
     // Iterate over all images
     // -1- Define their sizes
     // -2-  Get their position
     // -3-  Place them in the grid
-    for (let i = 1; i <= postCount; i++) {
-        defineImageSize(imageSrc)
-            .then(cellSize => {
+    for (let i = 0; i < postCount; i++) {
+        image = orderOfPosts[i];
+        defineImageSize(image.coverPhoto)
+        .then(cellSize => {
+                image = orderOfPosts[i];
 
                 newImgPosition = getRandomNumber(newImgPosition + 1, newImgPosition + 8);
                 
@@ -109,7 +108,7 @@ function setPosts() {
                     cellsToAppend = newImgPosition - oldImgPosition;
                     appendGridCells(grid, cellsToAppend);
                 };
-                placeImg(newImgPosition, cellSize, imageSrc);
+                placeImg(newImgPosition, cellSize, image);
                 oldImgPosition = newImgPosition;
                 newImgPosition ++;
             })

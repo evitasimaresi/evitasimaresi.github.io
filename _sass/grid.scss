@@ -4,6 +4,7 @@
 
 .grid {
     display: grid;
+    padding: 10px 0 0 0;
     // background: var(--hight-light-color);
     // max-width: 900px;
     // margin: 0 auto;
@@ -28,7 +29,7 @@
 }
 
 .grid > div {
-    border: 1px dashed rgba(250, 191, 240, 0.856);
+    // border: 1px dashed rgba(250, 191, 240, 0.856);
 }
 
 // .grid > div:nth-child(1) {
@@ -38,3 +39,10 @@
 .image-in-grid {
     width: 100%;
 }
+
+.grid-p,
+.grid-a {
+    text-decoration-line: none !important;
+    text-decoration: none !important;
+    color: var(--black);
+ }
