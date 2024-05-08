@@ -7,7 +7,7 @@
     </label>
     <nav class="menu-content">
         {% for item in site.data.navigation %}
-        <a href="{{ item.link }}" {% if page.url==item.link %}class="current" {% endif %}>
+        <a href="{{ item.link }}" class="nav-link" {% if page.url==item.link %}id="current" {% endif %}>
             {% if item.image %}
             <img src={{item.image}} alt="{{item.name}}">
             {% else %}
@@ -16,6 +16,6 @@
         </a>
         {% endfor %}
     </nav>
-    <a href="/info.html" id="info-element" {% if page.url=="/info.html" %}class="current" {% endif %}>info</a>
+    <a href="/info.html" class="info-element" {% if page.url=="/info.html" %}id="current" {% endif %}>info</a>
 </div>
  
