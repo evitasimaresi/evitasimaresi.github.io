@@ -1,25 +1,16 @@
 ---
 ---
-let postsList = [
-    {% for post in site.posts %}
-      {
-        url: "{{ post.url }}",
-        title: "{{ post.title | escape }}",
-        field: "{{ post.field | escape }}",
-        coverPhoto: "{{ post.coverPhoto | escape }}",
-      }{% unless forloop.last %},{% endunless %}
-    {% endfor %}
-  ];
 
-//   console.log(postsList);
+// First loading all projects
+setPosts(getPosts(''));
 
-function getRandomPosts(postsList) {
-    for (let i = 0; i < postsList.length; i++) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [postsList[i], postsList[j]] = [postsList[j], postsList[i]];
+    function getRandomPosts(postsList) {
+        for (let i = 0; i < postsList.length; i++) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [postsList[i], postsList[j]] = [postsList[j], postsList[i]];
+        }
+        return postsList;
     }
-    return postsList;
-}
 
 function getRandomPostsArray(postCount) {
     let numbers = Array.from({ length: postCount }, (_, i) => i + 1);
@@ -56,7 +47,6 @@ function defineImageSize(imgSurce) {
 }
 
 function placeImg(imgPosition, cellSize, image) {
-    // console.log(image);
     let gridCell = document.querySelector(`.grid > div:nth-child(${imgPosition})`);
     if (gridCell) {
         gridCell.style.gridColumn = 'span ' + cellSize;
@@ -77,7 +67,14 @@ function appendGridCells(grid, numberOfCells) {
     }
 }
 
-function setPosts() {
+function clearGrid() {
+    let grid = document.querySelector('.grid');
+    while(grid.firstChild) {
+        grid.removeChild(grid.firstChild);
+    }
+}
+
+function setPosts(postsList) {
     // This is count the order of the images in the grid
     let imgIndexInGrid = 1;
 
@@ -86,22 +83,23 @@ function setPosts() {
     let cellsToAppend = 0;
     let postCount = {{ site.posts.size }};
 
-    let orderOfPosts = getRandomPosts(postsList);
-    let image = '';
-    const grid = document.querySelector('.grid');
-    
-    // Iterate over all images
-    // -1- Define their sizes
-    // -2-  Get their position
-    // -3-  Place them in the grid
-    for (let i = 0; i < postCount; i++) {
-        image = orderOfPosts[i];
+let orderOfPosts = getRandomPosts(postsList);
+let image = '';
+const grid = document.querySelector('.grid');
+
+// Iterate over all images
+// -1- Define their sizes
+// -2-  Get their position
+// -3-  Place them in the grid
+for (let i = 0; i < postCount; i++) {
+    image = orderOfPosts[i];
+    if (image && image.coverPhoto) {
         defineImageSize(image.coverPhoto)
-        .then(cellSize => {
+            .then(cellSize => {
                 image = orderOfPosts[i];
 
                 newImgPosition = getRandomNumber(newImgPosition + 1, newImgPosition + 8);
-                
+
                 if (newImgPosition < 8) {
                     appendGridCells(grid, newImgPosition);
                 } else {
@@ -110,17 +108,51 @@ function setPosts() {
                 };
                 placeImg(newImgPosition, cellSize, image);
                 oldImgPosition = newImgPosition;
-                newImgPosition ++;
+                newImgPosition++;
             })
             .catch(error => {
                 console.error(error);
             });
-    };
+    } 
+    // else {
+    //     console.log('Image not defined.')
+    // }
+};
 };
 
-setPosts();
-// Dynamically follow the resizing of screen's width 
-// window.addEventListener('resize', function () {
-//     getGridSize();
-// });
+document.addEventListener('DOMContentLoaded', function () {
+    const navLinks = document.querySelectorAll('.nav-link');
 
+    navLinks.forEach(function (link) {
+        link.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            const field = this.getAttribute('href');
+
+            let postsList = getPosts(field);
+            if (document.querySelector('.grid').firstChild) {
+                clearGrid();
+            };
+            setPosts(postsList);
+
+        });
+    });
+});
+
+function getPosts(field) {
+    let postsData = [
+        {% for post in site.posts %}
+{
+    url: "{{ post.url }}",
+        title: "{{ post.title | escape }}",
+            field: "{{ post.field | escape }}",
+                coverPhoto: "{{ post.coverPhoto | escape }}",
+    } {% unless forloop.last %}, {% endunless %}
+{% endfor %}
+  ];
+if (field === ''){
+return postsData;
+}
+let post = postsData.filter(post => post.field === field);
+return post || null;
+}

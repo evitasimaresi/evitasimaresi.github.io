@@ -1,5 +1,5 @@
 :root {
-    --Column-number: 48;
+    --Column-number: 38;
 }
 
 .grid {
@@ -29,7 +29,7 @@
 }
 
 .grid > div {
-    // border: 1px dashed rgba(250, 191, 240, 0.856);
+    border: 1px dashed rgba(250, 191, 240, 0.856);
 }
 
 // .grid > div:nth-child(1) {

@@ -3,6 +3,12 @@
   # image: /assets/images/favicon/favicon-32x32.png
 # - name: info
 #   link: /info.html
+- name: all
+  link: 
+- name: architecture
+  link: architecture
+- name: product design
+  link: product design
 - name: projects
   link: /projects.html
 - name: fields
