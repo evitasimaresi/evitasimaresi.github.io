@@ -3,7 +3,13 @@ layout: default
 
 ---
 
-<!-- <p style="color:beige; font-size: 50px;">This is the grid html</p> -->
+{% if page.url != "/" %}
+    <h1 class="h1-title">
+        {{ page.title }}
+    </h1>
+{% endif %}
+
+    <!-- <p style="color:beige; font-size: 50px;">This is the grid html</p> -->
 
 <div class="grid"></div>
 

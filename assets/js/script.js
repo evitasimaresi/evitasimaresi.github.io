@@ -9,6 +9,8 @@
 // }
 // window.field = pathname;
 
+// console.log({{page.url}});
+
 if (window.location.pathname != "/") {
     document.addEventListener('DOMContentLoaded', function () {
         const navLinks = document.querySelectorAll('.nav-link');

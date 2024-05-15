@@ -35,30 +35,43 @@ function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function defineImageSize(imgSurce) {
-    return new Promise((resolve, reject) => {
-        let img = new Image();
-        // console.log(img);
-        img.onload = function () {
-            let dimensions = { width: this.width, height: this.height };
-            // console.log(dimensions);
-            let cellSize;
-            if (dimensions.height > dimensions.width) {
-                // Vertical image
-                cellSize = getRandomNumber(2, 4);
-                // console.log("Image Vertical")
-            } else {
-                // Horizontal image
-                cellSize = getRandomNumber(4, 8);
-                // console.log("Image Horizontal")
-            }
-            resolve(cellSize);
-        };
-        img.onerror = function () {
-            reject(new Error("Failed to load image on path: " + imgSurce));
-        };
-        img.src = imgSurce;
-    });
+// function defineImageSize(imgSource) {
+//     return new Promise((resolve, reject) => {
+//         let img = new Image();
+//         // console.log(img);
+//         img.onload = function () {
+//             let dimensions = { width: this.width, height: this.height };
+//             // console.log(dimensions);
+//             let cellSize;
+//             if (dimensions.height > dimensions.width) {
+//                 // Vertical image
+//                 cellSize = getRandomNumber(2, 4);
+//                 // console.log("Image Vertical")
+//             } else {
+//                 // Horizontal image
+//                 cellSize = getRandomNumber(4, 8);
+//                 // console.log("Image Horizontal")
+//             }
+//             resolve(cellSize);
+//         };
+//         img.onerror = function () {
+//             reject(new Error("Failed to load image on path: " + imgSource));
+//         };
+//         img.src = imgSource;
+//     });
+// }
+
+
+function defineImageSize(img) {
+    if (img.height > img.width) {
+        // Vertical image
+        // console.log("Image Vertical")
+        return getRandomNumber(3, 6);
+    } else {
+        // Horizontal image
+        // console.log("Image Horizontal")
+        return getRandomNumber(5, 8);
+    }
 }
 
 function placeImg(imgPosition, cellSize, image) {
@@ -90,6 +103,52 @@ function clearGrid() {
 }
 
 // For Posts in index
+// function setPosts(postsList) {
+//     // This is count the order of the images in the grid
+//     let imgIndexInGrid = 1;
+
+//     let newImgPosition = 0;
+//     let oldImgPosition = 0;
+//     let cellsToAppend = 0;
+//     let postCount = {{ site.posts.size }};
+
+//     let orderOfPosts = getRandomPosts(postsList);
+//     let image = '';
+//     const grid = document.querySelector('.grid');
+
+//     // Iterate over all images
+//     // -1- Define their sizes
+//     // -2-  Get their position
+//     // -3-  Place them in the grid
+//     for (let i = 0; i < postCount; i++) {
+//         image = orderOfPosts[i];
+//         if (image && image.coverPhoto) {
+//             defineImageSize(image.coverPhoto)
+//                 .then(cellSize => {
+//                     image = orderOfPosts[i];
+
+//                     newImgPosition = getRandomNumber(newImgPosition + 1, newImgPosition + 8);
+
+//                     if (newImgPosition < 8) {
+//                         appendGridCells(grid, newImgPosition);
+//                     } else {
+//                         cellsToAppend = newImgPosition - oldImgPosition;
+//                         appendGridCells(grid, cellsToAppend);
+//                     };
+//                     placeImg(newImgPosition, cellSize, image);
+//                     oldImgPosition = newImgPosition;
+//                     newImgPosition++;
+//                 })
+//                 .catch(error => {
+//                     console.error(error);
+//                 });
+//         } 
+//         // else {
+//         //     console.log('Image not defined.')
+//         // }
+//     };
+// };
+
 function setPosts(postsList) {
     // This is count the order of the images in the grid
     let imgIndexInGrid = 1;
@@ -98,6 +157,7 @@ function setPosts(postsList) {
     let oldImgPosition = 0;
     let cellsToAppend = 0;
     let postCount = {{ site.posts.size }};
+    let cellSize;
 
     let orderOfPosts = getRandomPosts(postsList);
     let image = '';
@@ -110,29 +170,21 @@ function setPosts(postsList) {
     for (let i = 0; i < postCount; i++) {
         image = orderOfPosts[i];
         if (image && image.coverPhoto) {
-            defineImageSize(image.coverPhoto)
-                .then(cellSize => {
-                    image = orderOfPosts[i];
+            cellSize = defineImageSize(image.coverPhoto)
+            image = orderOfPosts[i];
 
-                    newImgPosition = getRandomNumber(newImgPosition + 1, newImgPosition + 8);
+            newImgPosition = getRandomNumber(newImgPosition + 1, newImgPosition + 8);
 
-                    if (newImgPosition < 8) {
-                        appendGridCells(grid, newImgPosition);
-                    } else {
-                        cellsToAppend = newImgPosition - oldImgPosition;
-                        appendGridCells(grid, cellsToAppend);
-                    };
-                    placeImg(newImgPosition, cellSize, image);
-                    oldImgPosition = newImgPosition;
-                    newImgPosition++;
-                })
-                .catch(error => {
-                    console.error(error);
-                });
+            if (newImgPosition < 8) {
+                appendGridCells(grid, newImgPosition);
+            } else {
+                cellsToAppend = newImgPosition - oldImgPosition;
+                appendGridCells(grid, cellsToAppend);
+            };
+            placeImg(newImgPosition, cellSize, image);
+            oldImgPosition = newImgPosition;
+            newImgPosition++;
         } 
-        // else {
-        //     console.log('Image not defined.')
-        // }
     };
 };
 
@@ -181,23 +233,8 @@ document.addEventListener('DOMContentLoaded', function () {
 function getElementForPost() {
     const post = document.getElementsByTagName("main");
     const textImages = post[0].querySelectorAll('p, img');
-    console.log(textImages);
-    // console.log(textImages[3].currentSrc);
+    // console.log(textImages);
     return textImages;
-
-    for (let j = 0; j < textImages.length; j++) {
-        // console.log(textImages[j].tagName);
-        if (textImages[j].tagName == "P") {
-            console.log(j + " Its an " + textImages[j].tagName)
-        }
-    }
-}
-
-function defineCellSizeforText(text) {
-    // let cellSize;
-    // let dimensions = { width: this.width, height: this.height };
-    console.log(text.length);
-    return getRandomNumber(4, 8);
 }
 
 function placeElements(elementPosition, cellSize, element){
@@ -207,14 +244,14 @@ function placeElements(elementPosition, cellSize, element){
         if (element.tagName == "IMG") {
             gridCell.innerHTML += `<a class="grid-a">
                                     <figure>
-                                    <img class="image-in-grid" src="${element.src}" alt="this is an image test">
+                                    <img class="image-in-grid" src="${element.src}" alt="${element.alt}">
                                     <figcaption class="grid-caption" >${element.alt}</figcaption>
                                     </figure>
                                     </a>`;
         } else {
-            gridCell.innerHTML += `<a class="grid-a">
+            gridCell.innerHTML += `<p class="grid-a">
                                     ${element.innerText}
-                                    </a>`;
+                                    </p>`;
             
         }
 
@@ -226,6 +263,8 @@ function setElements(elementsObj) {
     let oldElmPosition = 0;
     let cellsToAppend = 0;
 
+    let cellSize;
+
     const grid = document.querySelector('.grid');
     // Iterate over all elements
     // -1- Define their sizes
@@ -233,38 +272,19 @@ function setElements(elementsObj) {
     // -3-  Place them in the grid
     for (let i = 0; i < elementsObj.length; i++) {
         if (elementsObj[i].tagName == "IMG") {
-           defineImageSize(elementsObj[i].src)
-            .then (cellSize => {
-                // console.log('Image size: ' + cellSize);
-                newElmPosition = getRandomNumber(newElmPosition + 1, newElmPosition + 8);
-                if (newElmPosition < 8) {
-                    appendGridCells(grid, newElmPosition);
-                } else {
-                    cellsToAppend = newElmPosition - oldElmPosition;
-                    appendGridCells(grid, cellsToAppend);
-                };
-                placeElements(newElmPosition, cellSize, elementsObj[i]);
-                oldElmPosition = newElmPosition;
-                newElmPosition++;
-            })
-            .catch(error => {
-                console.error(error);
-            })
+            cellSize = defineImageSize(elementsObj[i]);
         } else {
-            console.log("element is: " + elementsObj[i].tagName);
-            console.log("Cellsize: " + defineCellSizeforText(elementsObj[i].innerText));
-            let cellSize = getRandomNumber(4, 8)
-            newElmPosition = getRandomNumber(newElmPosition + 1, newElmPosition + 8);
-            if (newElmPosition < 8) {
-                appendGridCells(grid, newElmPosition);
-            } else {
-                cellsToAppend = newElmPosition - oldElmPosition;
-                appendGridCells(grid, cellsToAppend);
-            };
-            placeElements(newElmPosition, cellSize, elementsObj[i]);
-            oldElmPosition = newElmPosition;
-            newElmPosition++;
+            cellSize = getRandomNumber(7, 11);
         }
+        newElmPosition = getRandomNumber(newElmPosition + 1, newElmPosition + 8);
+        if (newElmPosition < 8) {
+            appendGridCells(grid, newElmPosition);
+        } else {
+            cellsToAppend = newElmPosition - oldElmPosition;
+            appendGridCells(grid, cellsToAppend);
+        };
+        placeElements(newElmPosition, cellSize, elementsObj[i]);
+        oldElmPosition = newElmPosition;
+        newElmPosition++;
     }
 }
-
