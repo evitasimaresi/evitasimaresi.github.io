@@ -1,6 +1,7 @@
 :root {
   --top-margin: 10px;
-  --menu-margin: 15px;
+  --menu-margin: 20px;
+  --menu-height: 15px;
 }
 
 nav {
@@ -18,7 +19,7 @@ nav {
 
 input#menu {
   display: none;
-  max-height: var(--menu-margin);
+  max-height: var(--menu-height);
 }
 
 .menu-content {
@@ -32,6 +33,7 @@ input:checked~.menu-content {
   transition: max-height 3s linear;
 }
 
+
 input:not(:checked)~.menu-content {
   max-height: 0;
   transition: max-height 2s linear;
@@ -41,13 +43,13 @@ input:not(:checked)~.menu-content {
   position: fixed;
   top: var(--top-margin);
   left: var(--top-margin);
-  width: var(--menu-margin);
+  width: var(--menu-height);
   // border-bottom: 3px solid #2c10dc;
 }
 
 label {
   margin-top: var(--menu-margin);
-  height: var(--menu-margin);
+  height: var(--menu-height);
 }
 
 .collapsible-menu ul {
