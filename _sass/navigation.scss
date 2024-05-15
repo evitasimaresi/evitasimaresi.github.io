@@ -24,11 +24,11 @@ input#menu {
 .menu-content {
   max-height: 0;
   overflow-y: hidden;
-  background: var(--background-color);
+  // background: var(--background-color);
 }
 
 input:checked~.menu-content {
-  max-height: 200px;
+  max-height: 900px;
   transition: max-height 3s linear;
 }
 
