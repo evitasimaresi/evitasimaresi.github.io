@@ -16,7 +16,8 @@
 /*screens smaller than 1200px*/
 @media (max-width: 1200px) {
     .grid {
-        grid-template-columns: repeat(calc(var(--Column-number) / 2), 1fr);
+        // grid-template-columns: repeat(calc(var(--Column-number) / 2), 1fr);
+        grid-template-columns: repeat( auto-fit, calc(var(--Column-number) / 2), 1fr);
     }
 }
 
@@ -45,8 +46,23 @@
     text-decoration-line: none !important;
     text-decoration: none !important;
     color: var(--black);
- }
+}
 
- .h1-title {
-    margin-top: 10px;
- }
+.title-container {
+    margin-top: 35lvh;
+    position: fixed;
+    width: 150px;
+    align-items: center;
+    // height: 150px;
+    // border: 1px solid var(--black);
+    // display: flex;
+}
+
+ .text-title {
+    font-size: 30pt;
+    margin-bottom: -6px;
+}
+
+.text-field {
+    color: var(--hight-light-color);
+}

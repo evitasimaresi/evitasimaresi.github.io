@@ -1,0 +1,97 @@
+.my-photo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 0 20px 0;
+    width: 20vw;
+}
+
+.links {
+    text-decoration: none;
+    color: var(--black);
+}
+
+.links:hover {
+    color: var(--hight-light-color);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: auto 60vw;
+    grid-template-rows: 2;
+    margin-top: 30px;
+    // margin-left: 25vw;
+    column-gap: 400px;
+}
+
+.info-grid > div {
+    // border: 1px dashed rgba(250, 191, 240, 0.8);
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+    padding: 0 10px 0 10px;
+}
+
+.card-body,
+.info-grid > div > p,
+.info-grid > div > p > button > p {
+    font-size: 10pt;
+    text-align: left;
+    margin: 0;
+}
+
+.info-grid > div:hover >p {
+    color: var(--hight-light-color);
+}
+
+.btn,
+.btn:hover,
+.btn:focus,
+.btn:active,
+.d-inline-flex {
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: transparent;
+    border-radius: 0;
+    border: none;
+    text-align: left;
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    color: var(--black) !important;
+    width:inherit !important;
+    width: 100%;
+}
+
+.btn:hover p {
+    color: var(--hight-light-color);
+}
+
+// .info-grid > div > p :hover  {
+// color: var(--hight-light-color);
+// }
+
+.card-body {
+    background-color: transparent;
+    border-radius: 0;
+    border: none;
+}
+
+.title-cell {
+    grid-column: 1;
+    grid-row: 1 / 5;
+}
+
+@media (max-width: 1200px) {
+    .my-photo {
+        width: 30vw;
+    }
+    .info-grid  {
+        column-gap: 0px;
+    }
+}
+
+@media (max-width: 700px) {
+    .my-photo {
+        width: 40vw;
+    }
+}

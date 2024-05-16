@@ -70,7 +70,7 @@ function defineImageSize(img) {
     } else {
         // Horizontal image
         // console.log("Image Horizontal")
-        return getRandomNumber(5, 8);
+        return getRandomNumber(5, 7);
     }
 }
 
@@ -81,7 +81,7 @@ function placeImg(imgPosition, cellSize, image) {
     }
     gridCell.innerHTML += `<a class="grid-a" href="${image.url}">
                             <figure>
-                            <img class="image-in-grid" src="${image.coverPhoto}" alt="this is an image test">
+                            <img class="image-in-grid" src="${image.coverPhoto}" alt="${image.title}">
                             <figcaption class="grid-caption" >${image.title}</figcaption>
                             </figure>
                             </a>`;
@@ -94,6 +94,15 @@ function appendGridCells(grid, numberOfCells) {
         grid.appendChild(gridCell);
     }
 }
+
+// function deleteEmptyCells(grid) {
+//     for (let i = 0; i < grid.childElementCount; i++) {
+//         if (grid.children[i].innerHTML == ""){
+//             console.log("Cell to append");
+//             grid.removeChild(grid.firstChild);
+//         }
+//     }    
+// }
 
 function clearGrid() {
     let grid = document.querySelector('.grid');
@@ -186,6 +195,7 @@ function setPosts(postsList) {
             newImgPosition++;
         } 
     };
+    // deleteEmptyCells(grid);
 };
 
 function getPosts(field) {
