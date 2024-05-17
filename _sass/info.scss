@@ -1,31 +1,67 @@
+.intro-info {
+    height: 92vh;
+    display: flex;
+    margin: 0 0 10vh 0;
+}
+
 .my-photo {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
     padding: 0 0 20px 0;
-    width: 20vw;
+    width: 30vw;
+    // position: absolute;
+    // top: 50%;
+    // transform: translateY(-50%);
+}
+
+.intro-info > h1 {
+    position: absolute;
+    bottom: 0;
+    // left: 0;
+    // text-align: left;
+    // align-self: flex-end;
+}
+
+.index {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+}
+
+.index > .about {
+    color: var(--black);
+}
+
+.index > .about:hover {
+    color: var(--hight-light-color);
 }
 
 .links {
     text-decoration: none;
-    color: var(--black);
+    // color: var(--black);
+    font-weight: 600;
+    color: var(--hight-light-color);
 }
 
 .links:hover {
-    color: var(--hight-light-color);
+    text-decoration: none;
+    color: var(--black);
 }
 
 .info-grid {
     display: grid;
     grid-template-columns: auto 60vw;
     grid-template-rows: 2;
-    margin-top: 30px;
+    margin: 30px 0 100px 0;
     // margin-left: 25vw;
     column-gap: 400px;
 }
 
 .info-grid > div {
-    // border: 1px dashed rgba(250, 191, 240, 0.8);
+    // border: 1px dashed rgba(183, 0, 162, 0.744);
     padding: 20px;
     font-size: 30px;
     text-align: center;
@@ -55,7 +91,7 @@
     border-radius: 0;
     border: none;
     text-align: left;
-    padding: 0 0 0 0;
+    padding: 10px 0 10px 0;
     margin: 0 0 0 0;
     color: var(--black) !important;
     width:inherit !important;
@@ -76,10 +112,11 @@
     border: none;
 }
 
-.title-cell {
+.title-cell-1 {
     grid-column: 1;
-    grid-row: 1 / 5;
+    grid-row: 1 / 6;
 }
+
 
 @media (max-width: 1200px) {
     .my-photo {
@@ -88,10 +125,19 @@
     .info-grid  {
         column-gap: 0px;
     }
+    .index {
+        max-width: 300px ;
+    }
 }
 
 @media (max-width: 700px) {
+    .info-grid  {
+        grid-template-columns: auto;
+    }
     .my-photo {
         width: 40vw;
+    }
+    .index {
+        max-width: 150px ;
     }
 }
