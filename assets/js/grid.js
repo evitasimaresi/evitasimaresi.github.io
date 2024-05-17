@@ -62,29 +62,37 @@ function getRandomNumber(min, max) {
 // }
 
 
-function defineImageSize(img) {
+function defineImageSize(img, min, max) {
+    if (min & max){
+        return getRandomNumber(min, max);
+    }
     if (img.height > img.width) {
         // Vertical image
         // console.log("Image Vertical")
         return getRandomNumber(3, 6);
-    } else {
-        // Horizontal image
-        // console.log("Image Horizontal")
-        return getRandomNumber(5, 7);
     }
+    // Horizontal image
+    // console.log("Image Horizontal")
+    return getRandomNumber(5, 7);
 }
 
 function placeImg(imgPosition, cellSize, image) {
+    let embedSrc;
     let gridCell = document.querySelector(`.grid > div:nth-child(${imgPosition})`);
     if (gridCell) {
         gridCell.style.gridColumn = 'span ' + cellSize;
     }
-    gridCell.innerHTML += `<a class="grid-a" href="${image.url}">
-                            <figure>
-                            <img class="image-in-grid" src="${image.coverPhoto}" alt="${image.title}">
-                            <figcaption class="grid-caption" >${image.title}</figcaption>
-                            </figure>
-                            </a>`;
+    
+    if (image.coverPhoto.includes('youtube.com')) {
+        embedSrc = `<div class="iframe-wrapper">
+        <iframe src="${image.coverPhoto}" frameborder="0"></iframe>
+        </div>`;
+        
+    } else {
+        embedSrc = `<img class="image-in-grid" src="${image.coverPhoto}" alt="${image.title}"></img>`;
+    }
+
+    gridCell.innerHTML += `<a class="grid-a" href="${image.url}"><figure>${embedSrc}<figcaption class="grid-caption">${image.title}</figcaption></figure></a>`;
 }
 
 function appendGridCells(grid, numberOfCells) {
@@ -242,27 +250,34 @@ document.addEventListener('DOMContentLoaded', function () {
 // Code for Elements in individual post
 function getElementForPost() {
     const post = document.getElementsByTagName("main");
-    const textImages = post[0].querySelectorAll('p, img');
-    // console.log(textImages);
-    return textImages;
+    // const textImages = post[0].querySelectorAll('p, img');
+    const textImages = post[0].getElementsByClassName("post-items");
+    return textImages[0].children;
 }
 
 function placeElements(elementPosition, cellSize, element){
+    // console.log(element.src);
     let gridCell = document.querySelector(`.grid > div:nth-child(${elementPosition})`);
     if (gridCell) {
         gridCell.style.gridColumn = 'span ' + cellSize;
         if (element.tagName == "IMG") {
             gridCell.innerHTML += `<a class="grid-a">
-                                    <figure>
-                                    <img class="image-in-grid" src="${element.src}" alt="${element.alt}">
-                                    <figcaption class="grid-caption" >${element.alt}</figcaption>
-                                    </figure>
-                                    </a>`;
-        } else {
+            <figure>
+            <img class="image-in-grid" src="${element.src}" alt="${element.alt}">
+            <figcaption class="grid-caption" >${element.alt}</figcaption>
+            </figure>
+            </a>`;
+        } else if (element.tagName == "P") {
             gridCell.innerHTML += `<p class="grid-a">
-                                    ${element.innerText}
-                                    </p>`;
+            ${element.innerText}
+            </p>`;
             
+        } else {
+            // gridCell.innerHTML += element.outerHTML;
+            gridCell.innerHTML += `<div class="iframe-wrapper">
+                                    <iframe src="${element.src}" frameborder="0"></iframe>
+                                    </div>`;
+
         }
 
     }
@@ -281,9 +296,13 @@ function setElements(elementsObj) {
     // -2-  Get their position
     // -3-  Place them in the grid
     for (let i = 0; i < elementsObj.length; i++) {
+        // console.log(i + ": width is: " + elementsObj[i].width);
         if (elementsObj[i].tagName == "IMG") {
             cellSize = defineImageSize(elementsObj[i]);
-        } else {
+        } else if (elementsObj[i].tagName == "IFRAME") {
+            cellSize = defineImageSize(elementsObj[i], 10, 15);
+        }
+        else {
             cellSize = getRandomNumber(7, 11);
         }
         newElmPosition = getRandomNumber(newElmPosition + 1, newElmPosition + 8);
