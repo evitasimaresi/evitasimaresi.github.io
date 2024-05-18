@@ -1,7 +1,15 @@
 .intro-info {
     height: 92vh;
     display: flex;
-    margin: 0 0 10vh 0;
+    margin: -80px 0 20vh 0;
+}
+
+#contact_details {
+    display: none;
+}
+
+#contact_details.visible {
+    display: block;
 }
 
 .my-photo {
@@ -31,17 +39,16 @@
     right: 10px;
 }
 
-.index > .about {
-    color: var(--black);
+.link-reverse {
+    color: var(--black) !important;
 }
 
-.index > .about:hover {
-    color: var(--hight-light-color);
+.link-reverse:hover {
+    color: var(--hight-light-color) !important;
 }
 
 .links {
     text-decoration: none;
-    // color: var(--black);
     font-weight: 600;
     color: var(--hight-light-color);
 }
@@ -70,6 +77,8 @@
 
 .card-body,
 .info-grid > div > p,
+.info-grid > div > a,
+.info-grid > div > a > p,
 .info-grid > div > p > button > p {
     font-size: 10pt;
     text-align: left;
@@ -117,6 +126,37 @@
     grid-row: 1 / 6;
 }
 
+// Contact
+#contact-details {
+    display: none; /* Hidden by default */
+    position: absolute;
+}
+
+#contact-details.visible {
+    display: block; /* Show when visible class is added */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 1250px) {
+    .index {
+        max-width: 500px ;
+    }
+}
 
 @media (max-width: 1200px) {
     .my-photo {
@@ -126,7 +166,7 @@
         column-gap: 0px;
     }
     .index {
-        max-width: 300px ;
+        max-width: 400px ;
     }
 }
 

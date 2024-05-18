@@ -3,19 +3,28 @@ layout: default
 title: info
 ---
 
-<div class="intro-info">
-    <img class="my-photo" src="assets/images/info/IMG-20220323-WA0009.jpg"
-        alt="my personal photo, credits: miskymarton">
+<div class="intro-info" id="intro">
+    <img class="my-photo" src="assets/images/info/IMG-20220323-WA0009.jpg" alt="my personal photo, credits: miskymarton">
+    <div id="contact-details">
+        <p>Your text goes here...</p>
+        <p> +34 611555785 | +30 6941577652 (WhatsApp/Viber)</p>
+    </div>
+    <!-- <div class="photo-container"></div> -->
+
+
+
+
     <h1>{{ "HELLO WORLD!" | downcase }}</h1>
     <div class="index">
-        <a class="links about" href="#about_link">about</a>
+        <a class="links link-reverse" href="#contact_link" id="reveal-contact">contact</a>
         <a class="links" href="#experience_link">experience</a>
         <a class="links" href="#education_link">education</a>
         <a class="links" href="#tools_link">tools</a>
         <a class="links" href="#languages_link">languages</a>
         <a class="links" href="#course_link">course</a>
+        <a class="links" href="#architectural_competitions_link">architectural competitions</a>
         <a class="links" href="#exhibitions_link">exhibitions</a>
-        <a class="links" href="#workshops_conferences_link">workshops_conferences</a>
+        <a class="links" href="#workshops_conferences_link">workshops conferences</a>
         <a class="links" href="#volunteering_link">volunteering</a>
         <a class="links" href="#skills_link">skills</a>
     </div>
@@ -37,9 +46,11 @@ title: info
 <!-- experience -->
 <div class="info-grid">
     <div class="title-cell-1">
-        <p id="experience_link">
-            <strong>experience</strong>
-        </p>
+        <a class="links link-reverse" href="#intro" id="experience_link">
+            <p>
+                experience
+            </p>
+        </a>
     </div>
     <div>
         <p class="justify-content-start gap-1 w-100">
@@ -134,9 +145,11 @@ title: info
 <!-- education -->
 <div class="info-grid">
     <div class="title-cell-1">
-        <p id="education_link">
-            <strong>education</strong>
-        </p>
+        <a class="links link-reverse" href="#intro" id="education_link">
+            <p>
+                education
+            </p>
+        </a> 
     </div>
     <div>
         <p class="justify-content-start gap-1 w-100">
@@ -186,9 +199,11 @@ title: info
 <!-- tools -->
 <div class="info-grid">
     <div class="title-cell-1">
-        <p id="tools_link">
-            <strong>tools</strong>
-        </p>
+        <a class="links link-reverse" href="#intro" id="tools_link">
+            <p>
+                tools
+            </p>
+        </a>
     </div>
     <div>
         <p>
@@ -221,9 +236,11 @@ title: info
 <!-- languages -->
 <div class="info-grid">
     <div class="title-cell-1">
-        <p id="languages_link">
-            <strong>languages</strong>
-        </p>
+        <a class="links link-reverse" href="#intro" id="languages_link">
+            <p>
+                languages
+            </p>
+        </a>
     </div>
     <div>
         <p>
@@ -245,9 +262,11 @@ title: info
 <!-- course -->
 <div class="info-grid">
     <div class="title-cell-1">
-        <p id="course_link">
-            <strong>course</strong>
-        </p>
+        <a class="links link-reverse" href="#intro" id="course_link">
+            <p>
+                course
+            </p>
+        </a>
     </div>
     <div>
         <p class="justify-content-start gap-1 w-100">
@@ -277,9 +296,11 @@ title: info
 <!-- architectural competitions -->
 <div class="info-grid">
     <div class="title-cell-1">
-        <p id="architectural_competitions_link">
-            <strong>architectural competitions</strong>
-        </p>
+        <a class="links link-reverse" href="#intro" id="architectural_competitions_link">
+            <p>
+                architectural competitions
+            </p>
+        </a>
     </div>
     <div>
         <p style="text-align: right">
@@ -307,9 +328,11 @@ title: info
 <!-- exhibitions -->
 <div class="info-grid">
     <div class="title-cell-1">
-        <p id="exhibitions_link">
-            <strong>exhibitions</strong>
-        </p>
+        <a class="links link-reverse" href="#intro" id="exhibitions_link">
+            <p>
+                exhibitions
+            </p>
+        </a>
     </div>
     <div>
         <p style="text-align: right">
@@ -338,9 +361,11 @@ title: info
 <!-- workshops_conferences -->
 <div class="info-grid">
     <div class="title-cell-1">
-        <p id="workshops_conferences_link">
-            <strong>workshops/ conferences</strong>
-        </p>
+        <a class="links link-reverse" href="#intro" id="workshops_conferences_link">
+            <p>
+                workshops/ conferences
+            </p>
+        </a>
     </div>
     <div>
         <p style="text-align: right">
@@ -386,9 +411,11 @@ title: info
 <!-- volunteering -->
 <div class="info-grid">
     <div class="title-cell-1">
-        <p id="volunteering_link">
-            <strong>volunteering</strong>
-        </p>
+        <a class="links link-reverse" href="#intro" id="volunteering_link">
+            <p>
+                volunteering
+            </p>
+        </a>
     </div>
     <div>
         <p style="text-align: right">
@@ -438,9 +465,11 @@ title: info
 <!-- skills -->
 <div class="info-grid">
     <div class="title-cell-1">
-        <p id="skills_link">
-            <strong>skills</strong>
-        </p>
+        <a class="links link-reverse" href="#intro" id="skills_link">
+            <p>
+                skills
+            </p>
+        </a>
     </div>
     <div>
         <p>
@@ -451,4 +480,5 @@ title: info
 
 </div>
 
+<script src="/assets/js/info.js"></script>
 <!-- <h1>Hello Evita!</h1>

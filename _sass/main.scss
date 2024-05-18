@@ -9,11 +9,10 @@
    --border-width: 1px;
    // --background-color: #FF5733;
    --background-color: #FCF6F5FF;
-}
-
-::selection {
-   color: var(--black);
-   background: var(--hight-light-color);
+   --mainTextSize: 10pt;
+   --top-margin: 10px;
+   --menu-margin: 20px;
+   --menu-height: 15px;
 }
 
 body {
