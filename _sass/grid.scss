@@ -41,13 +41,6 @@
     width: 100%;
 }
 
-.grid-caption,
-.grid-a {
-    text-decoration-line: none !important;
-    text-decoration: none !important;
-    color: var(--black);
-}
-
 .title-container {
     margin-top: 35lvh;
     position: fixed;
@@ -56,15 +49,6 @@
     // height: 150px;
     // border: 1px solid var(--black);
     // display: flex;
-}
-
- .text-title {
-    font-size: 30pt;
-    margin-bottom: -6px;
-}
-
-.text-field {
-    color: var(--hight-light-color);
 }
 
 .iframe-wrapper {

@@ -268,9 +268,8 @@ function placeElements(elementPosition, cellSize, element){
             </figure>
             </a>`;
         } else if (element.tagName == "P") {
-            gridCell.innerHTML += `<p class="grid-a">
-            ${element.innerText}
-            </p>`;
+            element.classList.add("grid-a");
+            gridCell.innerHTML += element.outerHTML;
             
         } else {
             // gridCell.innerHTML += element.outerHTML;
@@ -300,7 +299,7 @@ function setElements(elementsObj) {
         if (elementsObj[i].tagName == "IMG") {
             cellSize = defineImageSize(elementsObj[i]);
         } else if (elementsObj[i].tagName == "IFRAME") {
-            cellSize = defineImageSize(elementsObj[i], 10, 15);
+            cellSize = defineImageSize(elementsObj[i], 10, 13);
         }
         else {
             cellSize = getRandomNumber(7, 11);
