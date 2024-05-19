@@ -12,13 +12,18 @@
     display: block;
 }
 
+.photo-container {
+    position: relative;
+}
+
+.photo-container,
 .my-photo {
     display: block;
     margin-left: auto;
     margin-right: auto;
     margin-top: auto;
     margin-bottom: auto;
-    padding: 0 0 20px 0;
+    padding: 0 0 10px 0;
     width: 30vw;
     // position: absolute;
     // top: 50%;
@@ -31,6 +36,12 @@
     // left: 0;
     // text-align: left;
     // align-self: flex-end;
+}
+
+.logo-contact {
+    // margin: 0 5px 0 0;
+    height: 20px;
+    text-decoration: none !important;
 }
 
 .index {
@@ -48,7 +59,7 @@
 }
 
 .links {
-    text-decoration: none;
+    text-decoration: none !important;
     font-weight: 600;
     color: var(--hight-light-color);
 }
@@ -89,6 +100,7 @@
     color: var(--hight-light-color);
 }
 
+.contact-details > a,
 .btn,
 .btn:hover,
 .btn:focus,
@@ -136,21 +148,9 @@
     display: block; /* Show when visible class is added */
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#contact-details * {
+    margin-bottom: 0;
+}
 
 @media (max-width: 1250px) {
     .index {
@@ -179,5 +179,13 @@
     }
     .index {
         max-width: 150px ;
+    }
+}
+
+@media (max-width: 700px) and (max-height: 900px) {
+    #contact-details  {
+        position: absolute;
+        top: 10px;
+        left: 10px;
     }
 }
