@@ -1,6 +1,5 @@
 ---
 ---
-
 // First loading all projects in Index with filter if redirecting from another page
 if (window.location.pathname == "/") {
     if (localStorage.field) {
@@ -35,45 +34,73 @@ function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// function defineImageSize(imgSource) {
-//     return new Promise((resolve, reject) => {
-//         let img = new Image();
-//         // console.log(img);
-//         img.onload = function () {
-//             let dimensions = { width: this.width, height: this.height };
-//             // console.log(dimensions);
-//             let cellSize;
-//             if (dimensions.height > dimensions.width) {
-//                 // Vertical image
-//                 cellSize = getRandomNumber(2, 4);
-//                 // console.log("Image Vertical")
-//             } else {
-//                 // Horizontal image
-//                 cellSize = getRandomNumber(4, 8);
-//                 // console.log("Image Horizontal")
-//             }
-//             resolve(cellSize);
-//         };
-//         img.onerror = function () {
-//             reject(new Error("Failed to load image on path: " + imgSource));
-//         };
-//         img.src = imgSource;
-//     });
+// function defineImageSize(img, min, max) {
+//     if (min & max){
+//         return getRandomNumber(min, max);
+//     }
+
+//     if (!img.height) {
+//         const image = new Image();
+//         image.onload = function() {
+//         console.log(this.width + 'x' + this.height);
+//         }
+//         image.src = img;
+//     }
+
+//     if (img.height > img.width) {
+//         // Vertical image
+//         return getRandomNumber(3, 5);
+//     }
+//     // Horizontal image
+//     return getRandomNumber(5, 7);
 // }
 
+function loadImage(src) {
+    return new Promise((resolve, reject) => {
+        const image = new Image();
+        image.onload = () => resolve(image);
+        image.onerror = reject;
+        image.src = src;
+    });
+}
 
-function defineImageSize(img, min, max) {
-    if (min & max){
+async function defineImageSize(imgSrc, min, max) {
+    if (min && max) {
+        console.log(imgSrc);
         return getRandomNumber(min, max);
     }
-    if (img.height > img.width) {
-        // Vertical image
-        // console.log("Image Vertical")
-        return getRandomNumber(3, 6);
+    const Min = 3;
+    const Mid = 5;
+    const Max = 7;
+
+    if (imgSrc.height && imgSrc.width) {
+        if (imgSrc.height > imgSrc.width) {
+                    // Vertical image
+                    return getRandomNumber(Min, Mid);
+                }
+                // Horizontal image
+                return getRandomNumber(Mid, Max);   
     }
-    // Horizontal image
-    // console.log("Image Horizontal")
-    return getRandomNumber(5, 7);
+
+    try {
+        const image = await loadImage(imgSrc);
+        // console.log(image.width + 'x' + image.height);
+
+        let size;
+        if (image.height > image.width) {
+            // Vertical image
+            size = getRandomNumber(Min, Mid);
+        } else {
+            // Horizontal image
+            size = getRandomNumber(Mid, Max);
+        }
+
+        return size;
+    } catch (error) {
+        console.error('Error loading image:', error);
+        // Handle error appropriately
+        return null;
+    }
 }
 
 function placeImg(imgPosition, cellSize, image) {
@@ -103,15 +130,6 @@ function appendGridCells(grid, numberOfCells) {
     }
 }
 
-// function deleteEmptyCells(grid) {
-//     for (let i = 0; i < grid.childElementCount; i++) {
-//         if (grid.children[i].innerHTML == ""){
-//             console.log("Cell to append");
-//             grid.removeChild(grid.firstChild);
-//         }
-//     }    
-// }
-
 function clearGrid() {
     let grid = document.querySelector('.grid');
     while(grid.firstChild) {
@@ -119,54 +137,7 @@ function clearGrid() {
     }
 }
 
-// For Posts in index
-// function setPosts(postsList) {
-//     // This is count the order of the images in the grid
-//     let imgIndexInGrid = 1;
-
-//     let newImgPosition = 0;
-//     let oldImgPosition = 0;
-//     let cellsToAppend = 0;
-//     let postCount = {{ site.posts.size }};
-
-//     let orderOfPosts = getRandomPosts(postsList);
-//     let image = '';
-//     const grid = document.querySelector('.grid');
-
-//     // Iterate over all images
-//     // -1- Define their sizes
-//     // -2-  Get their position
-//     // -3-  Place them in the grid
-//     for (let i = 0; i < postCount; i++) {
-//         image = orderOfPosts[i];
-//         if (image && image.coverPhoto) {
-//             defineImageSize(image.coverPhoto)
-//                 .then(cellSize => {
-//                     image = orderOfPosts[i];
-
-//                     newImgPosition = getRandomNumber(newImgPosition + 1, newImgPosition + 8);
-
-//                     if (newImgPosition < 8) {
-//                         appendGridCells(grid, newImgPosition);
-//                     } else {
-//                         cellsToAppend = newImgPosition - oldImgPosition;
-//                         appendGridCells(grid, cellsToAppend);
-//                     };
-//                     placeImg(newImgPosition, cellSize, image);
-//                     oldImgPosition = newImgPosition;
-//                     newImgPosition++;
-//                 })
-//                 .catch(error => {
-//                     console.error(error);
-//                 });
-//         } 
-//         // else {
-//         //     console.log('Image not defined.')
-//         // }
-//     };
-// };
-
-function setPosts(postsList) {
+async  function setPosts(postsList) {
     // This is count the order of the images in the grid
     let imgIndexInGrid = 1;
 
@@ -187,7 +158,7 @@ function setPosts(postsList) {
     for (let i = 0; i < postCount; i++) {
         image = orderOfPosts[i];
         if (image && image.coverPhoto) {
-            cellSize = defineImageSize(image.coverPhoto)
+            cellSize = await defineImageSize(image.coverPhoto)
             image = orderOfPosts[i];
 
             newImgPosition = getRandomNumber(newImgPosition + 1, newImgPosition + 8);
@@ -282,7 +253,7 @@ function placeElements(elementPosition, cellSize, element){
     }
 }
 
-function setElements(elementsObj) {
+async function setElements(elementsObj) {
     let newElmPosition = 0;
     let oldElmPosition = 0;
     let cellsToAppend = 0;
@@ -297,9 +268,9 @@ function setElements(elementsObj) {
     for (let i = 0; i < elementsObj.length; i++) {
         // console.log(i + ": width is: " + elementsObj[i].width);
         if (elementsObj[i].tagName == "IMG") {
-            cellSize = defineImageSize(elementsObj[i]);
+            cellSize = await defineImageSize(elementsObj[i]);
         } else if (elementsObj[i].tagName == "IFRAME") {
-            cellSize = defineImageSize(elementsObj[i], 10, 13);
+            cellSize = await defineImageSize(elementsObj[i], 10, 13);
         }
         else {
             cellSize = getRandomNumber(7, 11);
