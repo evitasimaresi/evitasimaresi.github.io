@@ -65,6 +65,7 @@ function loadImage(src) {
 }
 
 async function defineImageSize(imgSrc, min, max) {
+    console.log(imgSrc);
     if (min && max) {
         console.log(imgSrc);
         return getRandomNumber(min, max);
@@ -80,7 +81,9 @@ async function defineImageSize(imgSrc, min, max) {
                 }
                 // Horizontal image
                 return getRandomNumber(Mid, Max);   
-    }
+        }  else if (imgSrc.includes("youtube")) {
+            return getRandomNumber(Mid, Max);   
+        }
 
     try {
         const image = await loadImage(imgSrc);
