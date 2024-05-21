@@ -1,11 +1,13 @@
 .intro-info {
+    // position: relative;
     height: 92vh;
     display: flex;
-    margin: -80px 0 20vh 0;
+    margin: -80px 0 40vh 0;
 }
 
 #contact_details {
     display: none;
+    flex-grow: 1;
 }
 
 #contact_details.visible {
@@ -50,6 +52,11 @@
     right: 10px;
 }
 
+.link-reverse:active,
+.link-reverse:focus,
+.link-reverse:focus-within,
+.link-reverse:target,
+.link-reverse:visited,
 .link-reverse {
     color: var(--black) !important;
 }
@@ -152,9 +159,9 @@
     margin-bottom: 0;
 }
 
-@media (max-width: 1250px) {
+@media (max-width: 1800px) and (max-height: 800px) {
     .index {
-        max-width: 500px ;
+        max-width: 400px ;
     }
 }
 
@@ -166,7 +173,10 @@
         column-gap: 0px;
     }
     .index {
-        max-width: 400px ;
+        max-width: 300px ;
+    }
+    #contact-details  {
+        max-width: 180px;
     }
 }
 
@@ -175,17 +185,27 @@
         grid-template-columns: auto;
     }
     .my-photo {
-        width: 40vw;
+        width: 42vw;
     }
     .index {
         max-width: 150px ;
     }
 }
 
-@media (max-width: 700px) and (max-height: 900px) {
+@media (max-height: 400px) {
+    .intro-info {
+        margin-bottom: 60vh;
+    }
+}
+
+@media (max-width: 600px) or (max-height: 650px) {
     #contact-details  {
         position: absolute;
-        top: 10px;
-        left: 10px;
+        top: 0px;
+        left: 0px;
+        padding: 10px;
+    }
+    .my-photo.hidden {
+    visibility: hidden;
     }
 }
