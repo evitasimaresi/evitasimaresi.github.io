@@ -52,16 +52,14 @@
     right: 10px;
 }
 
-.link-reverse:active,
-.link-reverse:focus,
-.link-reverse:focus-within,
-.link-reverse:target,
-.link-reverse:visited,
 .link-reverse {
-    color: var(--black) !important;
+    text-decoration: none !important;
+    font-weight: 600;
+    color: var(--black);
 }
 
 .link-reverse:hover {
+    text-decoration: none;
     color: var(--hight-light-color) !important;
 }
 
@@ -96,11 +94,14 @@
 .card-body,
 .info-grid > div > p,
 .info-grid > div > a,
-.info-grid > div > a > p,
 .info-grid > div > p > button > p {
     font-size: 10pt;
     text-align: left;
     margin: 0;
+}
+
+.info-grid > .title-cell-1 p {
+    font-size: 13pt;
 }
 
 .info-grid > div:hover >p {
