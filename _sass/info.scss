@@ -198,15 +198,28 @@
     }
 }
 
-@media (max-width: 600px) or (max-height: 650px) {
+@media (max-width: 600px) {
     #contact-details  {
         position: absolute;
         top: 0px;
         left: 0px;
         padding: 10px;
     }
-
+    
     .my-photo.hidden {
-    visibility: hidden;
+        visibility: hidden;
+    }
+}
+
+@media (max-height: 650px) {
+    #contact-details  {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        padding: 10px;
+    }
+    
+    .my-photo.hidden {
+        visibility: hidden;
     }
 }
