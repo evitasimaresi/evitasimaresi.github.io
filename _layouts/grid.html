@@ -6,11 +6,17 @@ layout: default
 {% if page.url != "/" %}
 <div class="title-container">
     <h1 class="text-title">
-        {{ page.title }}
+        {{ page.title | downcase }}
     </h1>
+    {% assign fieldValues = page.field | split: ", " %}
+    {% for field in fieldValues %}
     <h7 class="text-field">
-        {{ page.field }}
-    </h7>
+        {{ field }}
+    </h7> <br>
+    {% endfor %}
+    <p>
+        {{ page.date | date_to_string | date: "%Y"}}
+    </p>
 </div>
 {% endif %}
 
