@@ -11,6 +11,7 @@ if (window.location.pathname == "/") {
     }
 } else {
     let elementsObj = getElementForPost();
+    console.log(elementsObj);
     setElements(elementsObj);
 }
 
@@ -65,25 +66,23 @@ function loadImage(src) {
 }
 
 async function defineImageSize(imgSrc, min, max) {
-    console.log(imgSrc);
     if (min && max) {
-        console.log(imgSrc);
         return getRandomNumber(min, max);
     }
     const Min = 3;
     const Mid = 5;
     const Max = 7;
 
-    if (imgSrc.height && imgSrc.width) {
-        if (imgSrc.height > imgSrc.width) {
-                    // Vertical image
-                    return getRandomNumber(Min, Mid);
-                }
-                // Horizontal image
-                return getRandomNumber(Mid, Max);   
-        }  else if (imgSrc.includes("youtube")) {
-            return getRandomNumber(Mid, Max);   
-        }
+    // if (imgSrc.height && imgSrc.width) {
+    //     if (imgSrc.height > imgSrc.width) {
+    //                 // Vertical image
+    //                 return getRandomNumber(Min, Mid);
+    //             }
+    //             // Horizontal image
+    //             return getRandomNumber(Mid, Max);   
+    //     }  else if (imgSrc.includes('youtube')) {
+    //         return getRandomNumber(Mid, Max);   
+    //     }
 
     try {
         const image = await loadImage(imgSrc);
@@ -122,7 +121,7 @@ function placeImg(imgPosition, cellSize, image) {
         embedSrc = `<img class="image-in-grid" src="${image.coverPhoto}" alt="${image.title}"></img>`;
     }
 
-    gridCell.innerHTML += `<a class="grid-a" href="${image.url}"><figure>${embedSrc}<figcaption class="grid-caption">${image.title}</figcaption></figure></a>`;
+    gridCell.innerHTML += `<a class="grid-a" href="${image.url}"><figure>${embedSrc}<figcaption class="grid-caption">${image.title.toLowerCase()}</figcaption></figure></a>`;
 }
 
 function appendGridCells(grid, numberOfCells) {
@@ -161,7 +160,12 @@ async  function setPosts(postsList) {
     for (let i = 0; i < postCount; i++) {
         image = orderOfPosts[i];
         if (image && image.coverPhoto) {
-            cellSize = await defineImageSize(image.coverPhoto)
+            if (image.coverPhoto.includes('youtube')) {
+                cellSize = await defineImageSize(image.coverPhoto, 3, 7);   
+            } else {
+                cellSize = await defineImageSize(image.coverPhoto)
+            }
+            // console.log(image.title + ": " + cellSize);
             image = orderOfPosts[i];
 
             newImgPosition = getRandomNumber(newImgPosition + 1, newImgPosition + 8);
@@ -186,15 +190,22 @@ function getPosts(field) {
         {
         url: "{{ post.url }}",
         title: "{{ post.title | escape }}",
-        field: "{{ post.field | escape }}",
+        field: "{{ post.field }}",
         coverPhoto: "{{ post.coverPhoto | escape }}",
         } {% unless forloop.last %}, {% endunless %}
         {% endfor %}
     ];
+
+    // convert field strings into an array
+    postsData.forEach(post => {
+        post.field = post.field.split(',').map(item => item.trim());
+    });
+
+    // filter posts by field
     if (field === 'all'){
         return postsData;
     }
-    let post = postsData.filter(post => post.field === field);
+    let post = postsData.filter(post => post.field.includes(field));
     return post || null;
 }
 
@@ -225,12 +236,15 @@ document.addEventListener('DOMContentLoaded', function () {
 function getElementForPost() {
     const post = document.getElementsByTagName("main");
     // const textImages = post[0].querySelectorAll('p, img');
-    const textImages = post[0].getElementsByClassName("post-items");
+    // const textImages = post[0].getElementsByClassName("post-items");
+    // Assuming 'post' is already defined and refers to the parent element
+    const textImages = Array.from(post[0].querySelectorAll(".post-items")).filter(el => {
+    return el.closest('.post-items') === el;
+    });
     return textImages[0].children;
 }
 
 function placeElements(elementPosition, cellSize, element){
-    // console.log(element.src);
     let gridCell = document.querySelector(`.grid > div:nth-child(${elementPosition})`);
     if (gridCell) {
         gridCell.style.gridColumn = 'span ' + cellSize;
@@ -271,9 +285,9 @@ async function setElements(elementsObj) {
     for (let i = 0; i < elementsObj.length; i++) {
         // console.log(i + ": width is: " + elementsObj[i].width);
         if (elementsObj[i].tagName == "IMG") {
-            cellSize = await defineImageSize(elementsObj[i]);
+            cellSize = await defineImageSize(elementsObj[i].src);
         } else if (elementsObj[i].tagName == "IFRAME") {
-            cellSize = await defineImageSize(elementsObj[i], 10, 13);
+            cellSize = await defineImageSize(elementsObj[i], 9, 12);
         }
         else {
             cellSize = getRandomNumber(7, 11);

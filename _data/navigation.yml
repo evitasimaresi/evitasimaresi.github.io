@@ -5,13 +5,13 @@
 #   link: /info.html
 - name: all
   link: 
+- name: programming
+  link: programming
 - name: architecture
   link: architecture
-- name: test
-  link: test
 - name: product design
   link: product design
-- name: projects
-  link: /projects.html
-- name: fields
-  link: /fields.html
+- name: graphic design
+  link: graphic design
+- name: drawing
+  link: drawing

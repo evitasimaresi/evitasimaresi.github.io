@@ -5,8 +5,7 @@ baseurl: ""
 url: ""
 github_username: evitasimaresi
 
-exclude:
- - README.md
+exclude: [README.md, fields.html, projects.html, _fields/]
 
 collections:
   #This is the categories of each group set, like architecture, web, product design etc....
@@ -28,3 +27,13 @@ defaults:
     path: ""
   values:
     layout: "default"
+    -scope:
+    path: ""
+    type: "field"
+  values:
+    layout: "field"
+    -scope:
+    path: ""
+    type: "grid"
+  values:
+    layout: "grid"

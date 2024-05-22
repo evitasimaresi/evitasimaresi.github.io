@@ -19,7 +19,7 @@ mark {
 // grid.html
 .text-title {
     font-size: 30pt;
-    margin-bottom: -6px;
+    margin-bottom: -3px;
 }
 
 .text-field {
@@ -38,4 +38,11 @@ mark {
 .emphasize {
     font-weight: 600;
     font-size: 14pt;
+}
+
+.greek-font {
+    font-family: "Alegreya", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
 }
