@@ -2,7 +2,7 @@
     // position: relative;
     height: 92vh;
     display: flex;
-    margin: -80px 0 40vh 0;
+    margin: -80px 0 25vh 0;
 }
 
 #contact_details {
@@ -78,9 +78,9 @@
     display: grid;
     grid-template-columns: auto 60vw;
     grid-template-rows: 2;
-    margin: 30px 0 100px 0;
     // margin-left: 25vw;
     column-gap: 400px;
+    padding: 80px 0 80px 0;
 }
 
 .info-grid > div {

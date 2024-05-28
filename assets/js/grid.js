@@ -11,7 +11,6 @@ if (window.location.pathname == "/") {
     }
 } else {
     let elementsObj = getElementForPost();
-    console.log(elementsObj);
     setElements(elementsObj);
 }
 
@@ -91,16 +90,17 @@ async function defineImageSize(imgSrc, min, max) {
         let size;
         if (image.height > image.width) {
             // Vertical image
+            // console.log(imgSrc + ": Vertical");
             size = getRandomNumber(Min, Mid);
         } else {
             // Horizontal image
+            // console.log(imgSrc + ": Horizontal");
             size = getRandomNumber(Mid, Max);
         }
 
         return size;
     } catch (error) {
         console.error('Error loading image:', error);
-        // Handle error appropriately
         return null;
     }
 }
@@ -255,15 +255,17 @@ function placeElements(elementPosition, cellSize, element){
             <figcaption class="grid-caption" >${element.alt}</figcaption>
             </figure>
             </a>`;
-        } else if (element.tagName == "P") {
+        // } else if (element.tagName == "P") {
+        //     element.classList.add("grid-a");
+        //     gridCell.innerHTML += element.outerHTML;
+        
+    } else {
             element.classList.add("grid-a");
             gridCell.innerHTML += element.outerHTML;
-            
-        } else {
-            // gridCell.innerHTML += element.outerHTML;
-            gridCell.innerHTML += `<div class="iframe-wrapper">
-                                    <iframe src="${element.src}" frameborder="0"></iframe>
-                                    </div>`;
+            // element.classList.add("grid-a");
+            // gridCell.innerHTML += `<div class="iframe-wrapper">
+            //                         <iframe src="${element.src}" frameborder="0"></iframe>
+            //                         </div>`;
 
         }
 
