@@ -29,3 +29,4 @@ if (window.location.pathname != "/") {
 function redirectTo(ref) {
     window.location.href = ref;
 }
+
