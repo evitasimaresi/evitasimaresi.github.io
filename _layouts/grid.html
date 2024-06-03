@@ -1,9 +1,8 @@
 ---
 layout: default
-
 ---
 
-{% if page.url != "/" %}
+{% if page.collection == "posts" %}
 <div class="title-container">
     <h1 class="text-title">
         {{ page.title | downcase }}
