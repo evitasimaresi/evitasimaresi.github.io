@@ -4,14 +4,14 @@
 # - name: info
 #   link: /info.html
 - name: all
-  link: 
+  link: /
 - name: programming
-  link: programming
+  link: /programming
 - name: architecture
-  link: architecture
+  link: /architecture
 - name: product design
-  link: product design
+  link: /product_design
 - name: graphic design
-  link: graphic design
+  link: /graphic_design
 - name: drawing
-  link: drawing
+  link: /drawing

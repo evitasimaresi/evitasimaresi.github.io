@@ -7,7 +7,7 @@
     </label>
     <nav class="menu-content">
         {% for item in site.data.navigation %}
-        <a href="/" class="nav-link" {% if page.url==item.link %}id="current" {% endif %}>
+        <a href="{{item.link}}" class="nav-link" {% if page.url==item.link %}id="current" {% endif %}>
             {% if item.image %}
             <img src={{item.image}} alt="{{item.name}}">
             {% else %}

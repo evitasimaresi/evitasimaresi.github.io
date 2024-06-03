@@ -1,18 +1,22 @@
 ---
 ---
-// First loading all projects in Index with filter if redirecting from another page
-if (window.location.pathname == "/") {
-    if (localStorage.field) {
-        setPosts(getPosts(localStorage.field))
-        // console.log("localStorage.field: " + localStorage.field);
-        localStorage.removeItem('field');
-    } else {
-        setPosts(getPosts('all'));
-    }
+setPosts(getPosts(document.title));
+if (location.pathname.slice(1) == ""){
+    setPosts(getPosts('all'));
 } else {
     let elementsObj = getElementForPost();
     setElements(elementsObj);
 }
+// First loading all projects in Index with filter if redirecting from another page
+// if (window.location.pathname == "/") {
+//     if (localStorage.field) {
+//         setPosts(getPosts(localStorage.field))
+//         // console.log("localStorage.field: " + localStorage.field);
+//         localStorage.removeItem('field');
+//     } else {
+//         setPosts(getPosts('all'));
+//     }
+// } 
 
 function getRandomPosts(postsList) {
     for (let i = 0; i < postsList.length; i++) {
@@ -149,7 +153,10 @@ async  function setPosts(postsList) {
     let postCount = {{ site.posts.size }};
     let cellSize;
 
-    let orderOfPosts = getRandomPosts(postsList);
+    // Make the posts appear in random order
+    // let orderOfPosts = getRandomPosts(postsList);
+    let orderOfPosts = postsList;
+    
     let image = '';
     const grid = document.querySelector('.grid');
 
@@ -161,14 +168,14 @@ async  function setPosts(postsList) {
         image = orderOfPosts[i];
         if (image && image.coverPhoto) {
             if (image.coverPhoto.includes('youtube')) {
-                cellSize = await defineImageSize(image.coverPhoto, 3, 7);   
+                cellSize = await defineImageSize(image.coverPhoto, 5, 7);   
             } else {
                 cellSize = await defineImageSize(image.coverPhoto)
             }
             // console.log(image.title + ": " + cellSize);
             image = orderOfPosts[i];
 
-            newImgPosition = getRandomNumber(newImgPosition + 1, newImgPosition + 8);
+            newImgPosition = getRandomNumber(newImgPosition + 5, newImgPosition + 8);
 
             if (newImgPosition < 8) {
                 appendGridCells(grid, newImgPosition);
@@ -192,9 +199,12 @@ function getPosts(field) {
         title: "{{ post.title | escape }}",
         field: "{{ post.field }}",
         coverPhoto: "{{ post.coverPhoto | escape }}",
+        hiden: "{{post.hidden | escape}}"
         } {% unless forloop.last %}, {% endunless %}
         {% endfor %}
     ];
+
+    postsData = postsData.filter(post => post.hiden!== 'true');
 
     // convert field strings into an array
     postsData.forEach(post => {
@@ -210,26 +220,26 @@ function getPosts(field) {
 }
 
 // This always runs because is the navigation menu
-document.addEventListener('DOMContentLoaded', function () {
-    const navLinks = document.querySelectorAll('.nav-link');
+// document.addEventListener('DOMContentLoaded', function () {
+//     const navLinks = document.querySelectorAll('.nav-link');
 
-    navLinks.forEach(function (link) {
-        link.addEventListener('click', function (event) {
-            event.preventDefault();
+//     navLinks.forEach(function (link) {
+//         link.addEventListener('click', function (event) {
+//             event.preventDefault();
 
-            // const field = this.getAttribute('href');
-            const field = this.textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
+//             // const field = this.getAttribute('href');
+//             const field = this.textContent.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
             
 
-            let postsList = getPosts(field);
-            if (document.querySelector('.grid').firstChild) {
-                clearGrid();
-            };
-            setPosts(postsList);
-
-        });
-    });
-});
+//             let postsList = getPosts(field);
+//             console.log(postsList);
+//             if (document.querySelector('.grid').firstChild) {
+//                 clearGrid();
+//             };
+//             setPosts(postsList);
+//         });
+//     });
+// });
 
 
 // Code for Elements in individual post
