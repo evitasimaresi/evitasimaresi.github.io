@@ -1,3 +1,4 @@
 #Ingore the virtual enviroment
 _site/
 Gemfile.lock
+*.gltfbak
