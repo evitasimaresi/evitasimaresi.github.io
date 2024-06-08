@@ -122,7 +122,7 @@ function placeImg(imgPosition, cellSize, image) {
         </div>`;
         
     } else {
-        embedSrc = `<img class="image-in-grid" src="${image.coverPhoto}" alt="${image.title}"></img>`;
+        embedSrc = `<img class="image-in-grid-index" src="${image.coverPhoto}" alt="${image.title}"></img>`;
     }
 
     gridCell.innerHTML += `<a class="grid-a" href="${image.url}"><figure>${embedSrc}<figcaption class="grid-caption">${image.title.toLowerCase()}</figcaption></figure></a>`;
@@ -316,3 +316,5 @@ async function setElements(elementsObj) {
         newElmPosition++;
     }
 }
+
+
