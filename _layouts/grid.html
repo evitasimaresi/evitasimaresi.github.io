@@ -1,6 +1,9 @@
 ---
 layout: default
 ---
+{% if page.url == "/" %}
+    <h1>work in progress...<mark>come back later for more!</mark></h1>
+{% endif %} 
 
 {% if page.collection == "posts" %}
 <div class="title-container">
@@ -10,7 +13,11 @@ layout: default
     {% assign fieldValues = page.field | split: ", " %}
     {% for field in fieldValues %}
     <h7 class="text-field">
-        {{ field }}
+        {% for item in site.data.navigation %}
+            {% if item.name == field %}
+                <a class="links" href="{{ item.link }}">{{ field }}</a> 
+            {% endif %}
+        {% endfor %}
     </h7> <br>
     {% endfor %}
     <p>

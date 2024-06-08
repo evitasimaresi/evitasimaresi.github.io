@@ -35,6 +35,10 @@
 
 
   <title>{{ page.title | downcase }}</title>
+
+  {% if jekyll.environment == 'production' %}
+  {% include analytics.html %}
+  {% endif %}
 </head>
 
 <body>
