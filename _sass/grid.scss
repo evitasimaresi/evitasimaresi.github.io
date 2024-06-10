@@ -58,19 +58,9 @@
     z-index: 4;
 }
 
-// @media (min-height: 901px){
-//     .image-in-grid:active {
-//         height: 50dvh;
-//         width: auto;
-//     }
-// }
-
-// @media (max-width: 500px) and (max-height: 900px){
-//     .image-in-grid:active {
-//         width: 70dvw;
-//     }
-// }
-
+.image-in-grid:hover {
+    cursor: pointer;
+}
 
 .title-container {
     margin-top: 35lvh;
@@ -97,4 +87,3 @@
         height: 100%;
     }
 }
-

@@ -255,6 +255,7 @@ function getElementForPost() {
 }
 
 function placeElements(elementPosition, cellSize, element){
+    console.log(element);
     let gridCell = document.querySelector(`.grid > div:nth-child(${elementPosition})`);
     if (gridCell) {
         gridCell.style.gridColumn = 'span ' + cellSize;
