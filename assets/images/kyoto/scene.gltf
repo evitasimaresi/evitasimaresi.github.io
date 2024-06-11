@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "extensionsUsed": [
     "KHR_materials_transmission",
@@ -6785,3 +6786,8 @@
   ],
   "extensions": {}
 }
+=======
+version https://git-lfs.github.com/spec/v1
+oid sha256:d8fabab9daf02fe5ad5f0a67bf8016ffe08f3d6195c17343d2fa32eecd7d6e6d
+size 808540
+>>>>>>> ccf73d25ef0152c61745db0cee6370e2383420ea

@@ -1,2 +1,5 @@
 # *.gltf filter=lfs diff=lfs merge=lfs -text
+<<<<<<< HEAD
 *.gltf !text !filter !merge !diff
+=======
+>>>>>>> ccf73d25ef0152c61745db0cee6370e2383420ea
