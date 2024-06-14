@@ -1,6 +1,9 @@
 ---
 layout: post
-field: architecture
+field: 
+    - architecture
+coverPhoto: /assets/images/project-test/WeedingInGasStation_Greece_2012.webp
+hidden: true
 ---
 
 Kiwifruit (often abbreviated as kiwi), or Chinese gooseberry is the
@@ -11,3 +14,7 @@ a large hen's egg (5–8 cm (2.0–3.1 in) in length and 4.5–5.5 cm
 (1.8–2.2 in) in diameter). It has a fibrous, dull greenish-brown skin
 and bright green or golden flesh with rows of tiny, black, edible
 seeds. The fruit has a soft texture, with a sweet and unique flavor.
+
+This is an image here:
+
+![1.this is an image test](/assets/images/project-test/WeedingInGasStation_Greece_2012.webp)

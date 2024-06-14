@@ -32,7 +32,17 @@ Ready to start using Jekyll, refer to the documentation (link above) for detaile
     ``` bash
     jekyll build
     ```
+
+    or the following for the production enviroment, analytics will work with this build
+    ``` bash
+    JEKYLL_ENV=production jekyll build
+    ```
 1. Run a local web server, by append --livereload the browser will refresh with every change
     ``` bash
     jekyll serve --livereload
     ```
+
+    * Actually the following command refresh the content when there is change.
+        ``` bash
+        jekyll serve --force_polling
+        ```

@@ -1,9 +1,17 @@
-- name: home
+#- name: home
+  # link: /
+  # image: /assets/images/favicon/favicon-32x32.png
+# - name: info
+#   link: /info.html
+- name: all
   link: /
-  image: /assets/images/logo-16x16.png
-- name: info
-  link: /info.html
-- name: projects
-  link: /projects.html
-- name: fields
-  link: /fields.html
+- name: programming
+  link: /programming
+- name: architecture
+  link: /architecture
+- name: product design
+  link: /product_design
+- name: graphic design
+  link: /graphic_design
+- name: drawing
+  link: /drawing

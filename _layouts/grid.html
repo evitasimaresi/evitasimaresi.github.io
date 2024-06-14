@@ -1,0 +1,37 @@
+---
+layout: default
+---
+{% if page.url == "/" %}
+    <h1 style="margin-bottom: 50px;">work in progress...<mark>come back later for more!</mark></h1>
+{% endif %} 
+
+{% if page.collection == "posts" %}
+<div class="title-container">
+    <h1 class="text-title">
+        {{ page.title | downcase }}
+    </h1>
+    {% assign fieldValues = page.field | split: ", " %}
+    {% for field in fieldValues %}
+    <h7 class="text-field">
+        {% for item in site.data.navigation %}
+            {% if item.name == field %}
+                <a class="links" href="{{ item.link }}">{{ field }}</a> 
+            {% endif %}
+        {% endfor %}
+    </h7> <br>
+    {% endfor %}
+    <p>
+        {{ page.date | date_to_string | date: "%Y"}}
+    </p>
+</div>
+{% endif %}
+
+    <!-- <p style="color:beige; font-size: 50px;">This is the grid html</p> -->
+
+<div class="grid"></div>
+
+
+
+{{ content }}
+
+<script src="/assets/js/grid.js"></script>

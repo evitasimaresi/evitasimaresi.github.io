@@ -1,3 +1,28 @@
-.current {
-    color: green;
+/* * {
+    border: 1px solid rgb(57, 213, 228);
+ } */
+
+:root {
+   --black: #000000;
+   --hight-light-color: #BAA93C;
+   --color: rgb(0, 255, 170);
+   --border-width: 1px;
+   // --background-color: #FF5733;
+   // --background-color: #f8a3a3;
+   --background-color: #FCF6F5FF;
+   --background-color-transparency: rgba(252, 246, 245, 0.644);
+   --mainTextSize: 10pt;
+   --top-margin: 10px;
+   --menu-margin: 20px;
+   --menu-height: 15px;
 }
+
+body {
+   background-color: var(--background-color);
+   margin: 10px;
+}
+
+.body-content {
+   padding: 70px 0 0 0;
+}
+
