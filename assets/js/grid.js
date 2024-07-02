@@ -173,7 +173,7 @@ async  function setPosts(postsList) {
                 cellSize = await defineImageSize(image.coverPhoto)
             }
             // console.log(image.title + ": " + cellSize);
-            image = orderOfPosts[i];
+            // image = orderOfPosts[i];
 
             newImgPosition = getRandomNumber(newImgPosition + 5, newImgPosition + 8);
 
@@ -251,7 +251,7 @@ function getElementForPost() {
     const textImages = Array.from(post[0].querySelectorAll(".post-items")).filter(el => {
     return el.closest('.post-items') === el;
     });
-    return textImages[0].children;
+    return (textImages[0]) ? textImages[0].children : null;
 }
 
 function placeElements(elementPosition, cellSize, element){
@@ -262,7 +262,7 @@ function placeElements(elementPosition, cellSize, element){
             gridCell.innerHTML += `<a class="grid-a">
             <figure>
             <img class="image-in-grid" src="${element.src}" alt="${element.alt}">
-            <figcaption class="grid-caption" >${element.alt}</figcaption>
+            <figcaption class="grid-caption" href="${element.href}">${element.alt}</figcaption>
             </figure>
             </a>`;
         // } else if (element.tagName == "P") {
